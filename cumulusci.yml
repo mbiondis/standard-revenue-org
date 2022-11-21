@@ -1,0 +1,181 @@
+minimum_cumulusci_version: "3.68.1"
+project:
+  name: standard-revenue-org
+  package:
+    name: standard-revenue-org
+    api_version: "56.0"
+  git:
+  source_format: sfdx
+  dependencies:
+    #######     UNOFFICIAL SF    #######
+
+    # Flow Actions Base Pack
+    - version_id: 04t8b000000mKVTAA2
+
+    # Flow Screen Components Base Pack
+    - version_id: 04t5G0000043wpSQAQ
+
+    # Datatable
+    - version_id: 04t5G0000043wpmQAA
+
+    # File Upload Improved
+    - version_id: 04t5G0000043wqLQAQ
+
+    # Navigate Everywhere
+    - version_id: 04t5G000003rUhrQAE
+
+    # Flow Picker
+    #- version_id: 04t1K0000033MAq
+
+    # Collection Actions for Flow
+    - version_id: 04t5G0000043wsMQAQ
+
+    # Send Better Email
+    - version_id: 04t5G000003rUwJQAU
+
+    # Image Preview URL
+    #- version_id: 04t6F000001ZLV6
+
+    # Direct Navigation
+    #- version_id: 04t5G000004PuWpQAK
+
+    # Nebula Core (LazyIterator and SObjectIndex)
+    #- version_id: 04t6M000000kmQwQAI
+
+    # Record Detail
+    #- version_id: 04t5G0000047xDuQAI
+
+    #######     HOMEGROWN      #######
+
+    # Flow Quick Actions Pack
+    - version_id: 04t8d000000d00AAAQ
+
+    # Convert CSV to Records
+    - version_id: 04t8d000000czVoAAI
+
+    # Feedback App for SRO
+    - version_id: 04t8d000000d0YnAAI
+
+    #######     REVENUE CLOUD     #######
+
+    # Salesforce CPQ
+    - version_id: 04t4N000000N6EMQA0
+
+    # Salesforce Advanced Approvals
+    - version_id: 04t4W000002kdsnQAA
+
+    # Salesforce Billing
+    - version_id: 04t0K000001VLmnQAG
+
+    #######     LABS     #######
+
+    # Salesforce Billing Reports
+    - version_id: 04t4P000002icr9QAA
+
+    # Cancel and Replace
+    - version_id: 04t4W000002GpVaQAK
+
+    # Dynamic Flow Progress
+    - version_id: 04t4p0000027q4bAAA
+
+    # Mock Gateway Adapter
+    #- version_id: 04t2x000003t1MY
+
+    #######     CUSTOM     #######
+
+    # Charge Models for Revenue Cloud
+    - version_id: 04t8d000000d0I3AAI
+
+    # Hybrid Usage Add-On
+    - version_id: 04t8d000000d0I8AAI
+
+    # Product Manager for Revenue Cloud
+    - version_id: 04t8d000000d04wAAA
+
+    # Legal Entity Manager for Revenue Cloud
+    - version_id: 04t8d000000d09JAAQ
+
+    # Salesforce CPQ Tools
+    - version_id: 04t8d000000d04XAAQ
+
+    # Salesforce Billing Tools
+    - version_id: 04t8d000000d0PKAAY
+
+    # Salesforce Advanced Approval Tools
+    - version_id: 04t8d000000d056AAA
+
+    # RevOps Pack
+    - version_id: 04t8d000000czvsAAA
+
+    # Developer Pack for Revenue Cloud
+    - version_id: 04t8d000000d0YdAAI
+
+tasks:
+  robot:
+    options:
+      suites: robot/standard-revenue-org/tests
+      options:
+        outputdir: robot/standard-revenue-org/results
+
+  robot_testdoc:
+    options:
+      path: robot/standard-revenue-org/tests
+      output: robot/standard-revenue-org/doc/standard-revenue-org_tests.html
+
+  run_tests:
+    options:
+      required_org_code_coverage_percent: 75
+
+flows:
+  assign_permissions:
+    steps:
+      1:
+        task: assign_permission_set_licenses
+        options:
+          api_names: "SalesforceCPQ_CPQStandardPerm,SalesforceCPQ_CPQAAPerm"
+          #SalesforceCPQ_CPQBillingPerm
+      2:
+        task: assign_permission_sets
+        options:
+          api_names: AdvancedApprovalsAdmin, SalesforceBillingAdmin, SteelBrickCPQAdmin, RevenueCloud_Admin
+
+  load_data:
+    steps:
+      1:
+        task: dx
+        options:
+          command: "sfdmu:run -s csvfile -p data/step-1/csv"
+      2:
+        task: dx
+        options:
+          command: "sfdmu:run -s csvfile -p data/step-2/csv"
+
+  prod_org:
+    steps:
+      1:
+        flow: dependencies
+      2:
+        task: deploy
+        options:
+          path: sro-base
+      3:
+        flow: config_dev
+      4:
+        flow: assign_permissions
+      5:
+        flow: load_data
+
+  deploy_unmanaged:
+    steps:
+      3.1:
+        task: deploy
+        when: project_config.project__source_format == "sfdx" and org_config.scratch
+        options:
+          path: sro-base
+
+  dev_org:
+    steps:
+      5:
+        flow: assign_permissions
+      6:
+        flow: load_data

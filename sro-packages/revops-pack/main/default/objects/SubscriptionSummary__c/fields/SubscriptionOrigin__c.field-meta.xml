@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SubscriptionOrigin__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( AND( OriginalSubscription__r.SBQQ__StartDate__c &gt;=  SummaryStartDate__c, OriginalSubscription__r.SBQQ__StartDate__c &lt;= SummaryEndDate__c)  ,
+IF( TotalQuantity__c &gt; 0,
+  IF( ISBLANK( OriginalSubscription__r.SBQQ__RevisedSubscription__c ), &quot;New Business&quot;, &quot;Expansion&quot; ),
+  IF( ISBLANK( OriginalSubscription__r.SBQQ__TerminatedDate__c ), &quot;Contraction&quot;, &quot;Churn&quot; )
+)
+,&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Subscription Origin</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

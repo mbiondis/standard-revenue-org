@@ -1,0 +1,11 @@
+PriceBookName__c,UnitPrice,IsActive,Pricebook2.Name,Product2.Name,$$Pricebook2.Name$Product2.Name$UnitPrice
+Standard Price Book,0,FALSE,Standard Price Book,Usage (Standard),Standard Price Book;Usage (Standard)
+Standard Price Book,0,TRUE,Standard Price Book,Usage #2 (Standard),Standard Price Book;Usage #2 (Standard)
+Standard Price Book,1,TRUE,Standard Price Book,Committed Credits,Standard Price Book;Committed Credits;1
+Standard Price Book,500,TRUE,Standard Price Book,Milestone (Invoice Plan),Standard Price Book;Milestone (Invoice Plan);500
+Standard Price Book,0,TRUE,Standard Price Book,Usage #1 (Standard),Standard Price Book;Usage #1 (Standard)
+Standard Price Book,0,TRUE,Standard Price Book,Overage,Standard Price Book;Overage
+Standard Price Book,1000,TRUE,Standard Price Book,One-Time (Digital),Standard Price Book;One-Time (Digital);1000
+Standard Price Book,10,TRUE,Standard Price Book,Subscription (Yearly),Standard Price Book;Subscription (Yearly);10
+Standard Price Book,10,TRUE,Standard Price Book,Subscription (Monthly),Standard Price Book;Subscription (Monthly);10
+Standard Price Book,0,TRUE,Standard Price Book,Usage (Bucket),Standard Price Book;Usage (Bucket)

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SubscriptionOrigin__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( AND( ISPICKVAL( blng__OrderProduct__r.SBQQ__ChargeType__c, &quot;Recurring&quot;), ISPICKVAL( blng__OrderProduct__r.UsageType__c, &quot;&quot;) ),
+
+  IF( AND( blng__OrderProduct__r.SBQQ__Subscription__r.SBQQ__StartDate__c &gt;= blng__RevenueFinancePeriod__r.blng__PeriodStartDate__c , blng__OrderProduct__r.SBQQ__Subscription__r.SBQQ__StartDate__c &lt;= blng__RevenueFinancePeriod__r.blng__PeriodEndDate__c),
+  IF( blng__OrderProduct__r.SBQQ__Subscription__r.SBQQ__Quantity__c &gt; 0,
+    IF( ISBLANK( blng__OrderProduct__r.SBQQ__Subscription__r.SBQQ__RevisedSubscription__c ), &quot;New Business&quot;, &quot;Expansion&quot; ),
+    IF( ISBLANK( blng__OrderProduct__r.SBQQ__Subscription__r.SBQQ__TerminatedDate__c ), &quot;Contraction&quot;, &quot;Churn&quot; )
+  )
+  ,&quot;&quot;)
+
+,&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Subscription Origin</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

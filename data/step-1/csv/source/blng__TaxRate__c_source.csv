@@ -1,0 +1,4 @@
+Name,blng__Priority__c,blng__Rate__c,blng__TaxCode__c,blng__Country__c,blng__State__c,blng__City__c,blng__ZipCode__c,blng__LegalEntity__r.Name,$$blng__TaxCode__c$blng__Country__c$blng__State__c$blng__City__c$blng__Rate__c,Id,blng__LegalEntity__c,blng__LegalEntity__r.Id
+UK - Standard,0,20,Standard,United Kingdom,,,,UK,Standard;United Kingdom;20,QW1S53YDD9GHRSBCDY,BQYEAZTLDTXUOYPBDG,BQYEAZTLDTXUOYPBDG
+UK - Zero,0,0,Zero,United Kingdom,,,,UK,Zero;United Kingdom,T0JXGV1RERS3LHUZYN,BQYEAZTLDTXUOYPBDG,BQYEAZTLDTXUOYPBDG
+UK - Reduced,0,5,Reduced,United Kingdom,,,,UK,Reduced;United Kingdom;5,D3HUNLZMDLXWQSPEIO,BQYEAZTLDTXUOYPBDG,BQYEAZTLDTXUOYPBDG

@@ -1,0 +1,7 @@
+Name,blng__Active__c,blng__CreateRevenueSchedule__c,blng__Notes__c,Id
+Order (Manual) + Invoice (Full),true,Yes,Milestone (Invoice Plan),F4TDX82FHNFVOXO7CF
+Order (Manual) + Invoice (Manual),true,Yes,Milestone (Open-Ended),IEBP1RDKWJR735GJEV
+Order (Rata) + Invoice (Manual),true,Yes,Subscription (Billing Frequency != Monthly),1NKXX1VRHQAKQVQ5DL
+Order (Rata) + Invoice (Rata),true,Yes,Subscription (Billing Frequency = Monthly),5ZR7M7HJA5RMXTZEQT
+Order (Full) + Invoice (Full),true,Yes,Digital One-Time,ZBVQBEQLXQMTIQ48NR
+Invoice (Full),true,Yes,Usage,8W7XES6KZFPB1RXBO1

@@ -1,0 +1,4 @@
+Name,blng__Active__c,blng__GenerateInvoices__c,blng__InitialBillingTrigger__c,blng__PartialPeriodTreatment__c,blng__PeriodTreatmentForBTDO__c,Errors,Id
+Milestone,true,Yes,Order Product Activation Date,Separate,Exclude Billing Day of Month,,a2o8d000000IFYHAA4
+Standard,true,Yes,Order Product Activation Date,Separate,Exclude Billing Day of Month,,a2o8d000000IFYIAA4
+Do Not Invoice,true,No,Order Product Activation Date,Separate,Exclude Billing Day of Month,,a2o8d000000IFYJAA4

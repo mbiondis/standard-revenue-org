@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RefreshPeriod__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>AND(
+  IF( ISPICKVAL( blng__OrderProduct__r.CreditCarryoverType__c , &quot;Rolling&quot;), true,
+  IF( ISPICKVAL( blng__OrderProduct__r.CreditCarryoverType__c , &quot;Pool&quot;), MOD(Index__c-1, 
+  blng__OrderProduct__r.UsageTerm__c) == 0,
+  false
+  )
+  ),
+   CreditTracker__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Refresh Period</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

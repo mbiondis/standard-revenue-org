@@ -1,0 +1,4 @@
+Name,blng__Active__c,blng__CancellationRule__c,blng__BillingLegalEntity__c,blng__BillingFinanceBook__c,blng__BillingGLRule__c,blng__InvoicePlan__c,blng__BillingRule__c,blng__CancellationInvoicePlan__c,Errors,Id
+Milestone Billing (UK),true,LIFO by Order Product Creation Date,a3D8d000000UOhVEAW,a318d000000Js1OAAS,a348d000000OSO7AAO,a398d0000008ptcAAA,a2o8d000000IFYHAA4,,,a2r8d000000HykGAAS
+Standard (UK),true,LIFO by Order Product Creation Date,a3D8d000000UOhVEAW,a318d000000Js1OAAS,a348d000000OSO7AAO,,a2o8d000000IFYIAA4,,,a2r8d000000HykHAAS
+Do Not Invoice (UK),true,LIFO by Order Product Creation Date,a3D8d000000UOhVEAW,a318d000000Js1OAAS,a348d000000OSO7AAO,,a2o8d000000IFYJAA4,,,a2r8d000000HykIAAS

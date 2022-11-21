@@ -1,0 +1,6 @@
+Product.Name,ConsumptionSchedule.Name,$$Product.Name$ConsumptionSchedule.Name
+Usage (Bucket),Total Charges (Monthly),Usage (Bucket);Total Charges (Monthly)
+Usage (Standard),Number of Logins (Monthly),Usage (Standard);Number of Logins (Monthly)
+Overage,Number of API Calls (Monthly),Overage;Number of API Calls (Monthly)
+Usage #2 (Standard),Number of Events (Monthly),Usage #2 (Standard);Number of Events (Monthly)
+Usage #1 (Standard),Number of Logins (Monthly),Usage #1 (Standard);Number of Logins (Monthly)

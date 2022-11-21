@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Deletes all finance periods for the default Legal Entity, and replaces them with new ones in one go.</description>
+    <flowDefinition>RevenueCloud_DX_UpdateFinancePeriods</flowDefinition>
+    <label>Update Finance Periods</label>
+    <optionsCreateFeedItem>false</optionsCreateFeedItem>
+    <type>Flow</type>
+</QuickAction>

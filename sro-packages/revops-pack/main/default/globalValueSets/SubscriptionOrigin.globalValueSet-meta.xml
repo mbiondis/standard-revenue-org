@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>New Business</fullName>
+        <default>false</default>
+        <label>New Business</label>
+    </customValue>
+    <customValue>
+        <fullName>Expansion</fullName>
+        <default>false</default>
+        <label>Expansion</label>
+    </customValue>
+    <customValue>
+        <fullName>Churn</fullName>
+        <default>false</default>
+        <label>Churn</label>
+    </customValue>
+    <customValue>
+        <fullName>Contraction</fullName>
+        <default>false</default>
+        <label>Contraction</label>
+    </customValue>
+    <masterLabel>Subscription Origin</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

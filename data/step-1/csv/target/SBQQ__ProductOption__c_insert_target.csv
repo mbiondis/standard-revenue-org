@@ -1,0 +1,7 @@
+SBQQ__Number__c,SBQQ__Type__c,SBQQ__Selected__c,SBQQ__Required__c,SBQQ__QuantityEditable__c,SBQQ__Quantity__c,SBQQ__MinQuantity__c,SBQQ__MaxQuantity__c,SBQQ__UnitPrice__c,SBQQ__Discount__c,SBQQ__DiscountAmount__c,SBQQ__DiscountedByPackage__c,SBQQ__Bundled__c,SBQQ__System__c,SBQQ__AppliedImmediately__c,SBQQ__AppliedImmediatelyContext__c,SBQQ__ComponentCodePosition__c,SBQQ__ComponentCode__c,SBQQ__ComponentDescriptionPosition__c,SBQQ__ComponentDescription__c,SBQQ__DefaultPricingTable__c,SBQQ__ExistingQuantity__c,SBQQ__QuoteLineVisibility__c,SBQQ__SubscriptionScope__c,SBQQ__UpliftedByPackage__c,UsageType__c,SBQQ__OptionalSKU__c,SBQQ__ConfiguredSKU__c,SBQQ__Feature__c,SBQQ__DiscountSchedule__c,Errors,Id
+1,Related Product,true,false,false,,,,,,,false,false,false,false,,,,,,,,,,false,Meter,01t8d000002PCkDAAW,,,,,a1y8d000007JBt2AAG
+1,Related Product,true,false,false,1,,,,,,false,false,false,false,,,,,,,,,,false,Meter,01t8d000002PCkGAAW,01t8d000002PCkFAAW,,,,a1y8d000007JBt3AAG
+2,Related Product,true,false,false,1,,,,,,false,false,false,false,,,,,,,,,,false,Meter,01t8d000002PCkHAAW,01t8d000002PCkFAAW,,,,a1y8d000007JBt4AAG
+0,Related Product,true,false,false,1,,,,,,false,false,false,false,,,,,,,,,,false,Standard,01t8d000002PCkJAAW,01t8d000002PCkIAAW,,,,a1y8d000007JBt5AAG
+2,Related Product,true,false,false,1,,,,,,false,false,false,false,,,,,,,,,,false,Meter,,,,,,a1y8d000007JBt6AAG
+0,Related Product,true,false,false,1,,,,,,false,false,false,false,,,,,,,,,,false,Standard,,,,,,a1y8d000007JBt7AAG

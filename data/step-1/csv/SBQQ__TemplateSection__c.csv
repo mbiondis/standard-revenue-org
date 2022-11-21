@@ -1,0 +1,11 @@
+Name,SBQQ__DisplayOrder__c,SBQQ__ConditionalPrintField__c,SBQQ__FilterField__c,SBQQ__FilterOperator__c,SBQQ__FilterValue__c,SBQQ__BorderColor__c,SBQQ__BottomMargin__c,SBQQ__ColumnHeaderHidden__c,SBQQ__GroupField__c,SBQQ__KeepTogether__c,SBQQ__KeepWithNext__c,SBQQ__KeepWithPrevious__c,SBQQ__PageBreak__c,SBQQ__QuoteTotalsPrinted__c,SBQQ__RollUpField__c,SBQQ__SummaryDisplay__c,SBQQ__TopMargin__c,SBQQ__Template__r.Name,SBQQ__Content__r.Name
+Notes,70,,,,,,0,false,,Auto,Auto,,Before,false,,,0,Proposal,Quote Notes
+Cover Letter,30,,,,,,0,false,,Auto,Auto,,,false,,,0,Proposal,Cover Letter
+Line Items,60,,Optional,equals,FALSE,,0,false,,Auto,Auto,,,false,,,0,Proposal,Standard Line Items
+Terms - Header,80,,,,,,0,false,,Auto,Auto,,Before,false,,,0,Proposal,Terms Header
+Cover Page,10,,,,,,0,false,,Auto,Auto,,,false,,,0,Proposal,Cover Page
+Header 1,20,,,,,,0,false,,Auto,Auto,,Before,false,,,0,Proposal,Header 1
+Prepared For/By,50,,,,,,0,false,,Auto,Auto,,,false,,,0,Proposal,Prepared For/By
+Header 2,40,,,,,,0,false,,Auto,Auto,,Before,false,,,0,Proposal,Header 2
+Terms - Body,90,,,,,,0,false,,Auto,Auto,,,false,,,0,Proposal,Quote Terms
+Signature Block,100,,,,,,0,false,,Auto,Auto,,Before,false,,,0,Proposal,Signature Block - DocuSign

@@ -1,0 +1,4 @@
+Name,blng__Active__c,blng__CancellationRule__c,blng__BillingFinanceBook__r.Name,blng__BillingGLRule__r.Name,blng__BillingLegalEntity__r.Name,blng__BillingRule__r.Name,blng__CancellationInvoicePlan__r.Name,blng__InvoicePlan__r.Name
+Milestone Billing (UK),true,LIFO by Order Product Creation Date,Accounting,Billing - Standard,UK,Milestone,,50% Upfront + 50% 3 Months
+Standard (UK),true,LIFO by Order Product Creation Date,Accounting,Billing - Standard,UK,Standard,,
+Do Not Invoice (UK),true,LIFO by Order Product Creation Date,Accounting,Billing - Standard,UK,Do Not Invoice,,

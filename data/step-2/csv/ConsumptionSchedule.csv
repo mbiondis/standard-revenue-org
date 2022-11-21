@@ -1,0 +1,5 @@
+Name,IsActive
+Number of Logins (Monthly),true
+Number of Events (Monthly),true
+Total Charges (Monthly),true
+Number of API Calls (Monthly),true

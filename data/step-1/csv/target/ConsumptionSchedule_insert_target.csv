@@ -1,0 +1,5 @@
+Name,Type,BillingTerm,BillingTermUnit,UnitOfMeasure,MatchingAttribute,SBQQ__Category__c,RatingMethod,Description,Errors,Id
+Number of Logins (Monthly),Range,1,Month,Login,Quantity,Rates,Tier,,,0Mh8d000000D5fTCAS
+Number of Events (Monthly),Range,1,Month,Event,Quantity,Rates,Tier,,,0Mh8d000000D5fUCAS
+Total Charges (Monthly),Slab,1,Month,Currency,GBP,Rates,Tier,,,0Mh8d000000D5fVCAS
+Number of API Calls (Monthly),Slab,1,Month,API Call,Quantity,Rates,Tier,,,0Mh8d000000D5fWCAS

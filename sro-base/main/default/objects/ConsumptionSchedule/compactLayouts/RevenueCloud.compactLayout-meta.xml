@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RevenueCloud</fullName>
+    <fields>Name</fields>
+    <fields>UnitOfMeasure</fields>
+    <fields>MatchingAttribute</fields>
+    <fields>Type</fields>
+    <fields>BillingTerm</fields>
+    <fields>BillingTermUnit</fields>
+    <fields>IsActive</fields>
+    <label>Revenue Cloud</label>
+</CompactLayout>

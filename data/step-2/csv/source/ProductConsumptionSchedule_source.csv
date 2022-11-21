@@ -1,0 +1,6 @@
+Product.Name,ConsumptionSchedule.Name,$$Product.Name$ConsumptionSchedule.Name,Id,ProductId,Product.Id,ConsumptionScheduleId,ConsumptionSchedule.Id
+Usage (Bucket),Total Charges (Monthly),Usage (Bucket);Total Charges (Monthly),GOTOSWJXZFSAGHNCZJ,H2SVQDYDH3K2DV7F4Q,H2SVQDYDH3K2DV7F4Q,YYDE1KZ7QWE7JTWCJP,YYDE1KZ7QWE7JTWCJP
+Usage (Standard),Number of Logins (Monthly),Usage (Standard);Number of Logins (Monthly),LCMBM7WHYX4YPFSVSX,EVGYR7KWRMTIEUEFPT,EVGYR7KWRMTIEUEFPT,MXYEWJ51ISWH7AAFYW,MXYEWJ51ISWH7AAFYW
+Overage,Number of API Calls (Monthly),Overage;Number of API Calls (Monthly),PRSDVZOJS6JWQYSERQ,,,E3QHYENQS9OUYWFS0J,E3QHYENQS9OUYWFS0J
+Usage #2 (Standard),Number of Events (Monthly),Usage #2 (Standard);Number of Events (Monthly),H3MS962BPK7DZPLUND,ICPW8U55IVVNHBQHKU,ICPW8U55IVVNHBQHKU,X3RK3YDE3PETCOLVX6,X3RK3YDE3PETCOLVX6
+Usage #1 (Standard),Number of Logins (Monthly),Usage #1 (Standard);Number of Logins (Monthly),AUEKYQ8CRBUKU4UTQA,BOKTCFGRTRCK0GP97O,BOKTCFGRTRCK0GP97O,MXYEWJ51ISWH7AAFYW,MXYEWJ51ISWH7AAFYW

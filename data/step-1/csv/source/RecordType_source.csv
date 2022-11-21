@@ -1,0 +1,3 @@
+Name,Description,NamespacePrefix,DeveloperName,SobjectType,$$NamespacePrefix$DeveloperName$SobjectType,Id
+Configuration Attribute,Configuration Attribute associated to a product,SBQQ,Configuration_Attribute,SBQQ__ConfigurationAttribute__c,SBQQ;Configuration_Attribute;SBQQ__ConfigurationAttribute__c,JMPX4LZSMNYIK1YBTF
+Global Attribute,Definition of an Attribute Item,SBQQ,Global_Attribute,SBQQ__ConfigurationAttribute__c,SBQQ;Global_Attribute;SBQQ__ConfigurationAttribute__c,KTIW2XV4WDGHOWN7TB

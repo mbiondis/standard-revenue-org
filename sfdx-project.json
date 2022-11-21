@@ -1,0 +1,275 @@
+{
+  "packageDirectories": [
+    {
+      "path": "sro-base",
+      "default": true
+    },
+    {
+      "path": "sro-packages/hybrid-usage-add-on",
+      "package": "Hybrid Usage Add-On",
+      "versionName": "Winter '23",
+      "versionNumber": "1.0.0.NEXT",
+      "dependencies": [
+        {
+          "package": "Salesforce CPQ (Winter '22) [234.2]"
+        },
+        {
+          "package": "Salesforce Billing (Winter '22) [234.1]"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/charge-models",
+      "package": "Charge Models for Revenue Cloud",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "dependencies": [
+        {
+          "package": "Salesforce CPQ (Winter '22) [234.2]"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/product-manager",
+      "package": "Product Manager for Revenue Cloud",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "dependencies": [
+        {
+          "package": "Salesforce CPQ (Winter '22) [234.2]"
+        },
+        {
+          "package": "Salesforce Billing (Winter '22) [234.1]"
+        },
+        {
+          "package": "Flow Actions Base Pack"
+        },
+        {
+          "package": "Flow Screen Components Base Pack"
+        },
+        {
+          "package": "Dynamic Flow Progress"
+        },
+        {
+          "package": "Hybrid Usage Add-On@1.0.0-2"
+        },
+        {
+          "package": "Charge Models for Revenue Cloud@0.1.0-3"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/legal-entity-manager",
+      "package": "Legal Entity Manager for Revenue Cloud",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "dependencies": [
+        {
+          "package": "Salesforce CPQ (Winter '22) [234.2]"
+        },
+        {
+          "package": "Salesforce Billing (Winter '22) [234.1]"
+        },
+        {
+          "package": "Flow Actions Base Pack"
+        },
+        {
+          "package": "Flow Screen Components Base Pack"
+        },
+        {
+          "package": "Dynamic Flow Progress"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/salesforce-cpq-tools",
+      "package": "Salesforce CPQ Tools",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "dependencies": [
+        {
+          "package": "Salesforce CPQ (Winter '22) [234.2]"
+        },
+        {
+          "package": "Flow Actions Base Pack"
+        },
+        {
+          "package": "Flow Screen Components Base Pack"
+        },
+        {
+          "package": "Flow Quick Action Pack@0.1.0-1"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/salesforce-advanced-approvals-tools",
+      "package": "Salesforce Advanced Approvals Tools",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "dependencies": [
+        {
+          "package": "Salesforce CPQ (Winter '22) [234.2]"
+        },
+        {
+          "package": "Flow Actions Base Pack"
+        },
+        {
+          "package": "Flow Screen Components Base Pack"
+        },
+        {
+          "package": "Flow Quick Action Pack@0.1.0-1"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/salesforce-billing-tools",
+      "package": "Salesforce Billing Tools",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "dependencies": [
+        {
+          "package": "Salesforce CPQ (Winter '22) [234.2]"
+        },
+        {
+          "package": "Salesforce Billing (Winter '22) [234.1]"
+        },
+        {
+          "package": "Flow Actions Base Pack"
+        },
+        {
+          "package": "Flow Screen Components Base Pack"
+        },
+        {
+          "package": "Flow Quick Action Pack@0.1.0-1"
+        },
+        {
+          "package": "File Upload Improved"
+        },
+        {
+          "package": "Convert CSV to Records"
+        },
+        {
+          "package": "Collection Actions for Flow"
+        },
+        {
+          "package": "Charge Models for Revenue Cloud@0.1.0-3"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/revops-pack",
+      "package": "RevOps Pack",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "dependencies": [
+        {
+          "package": "Salesforce CPQ (Winter '22) [234.2]"
+        },
+        {
+          "package": "Salesforce Billing (Winter '22) [234.1]"
+        },
+        {
+          "package": "Hybrid Usage Add-On@1.0.0-2"
+        },
+        {
+          "package": "Charge Models for Revenue Cloud@0.1.0-3"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/developer-pack",
+      "package": "Developer Pack for Revenue Cloud",
+      "versionName": "Summer '22",
+      "versionNumber": "1.0.1.NEXT",
+      "dependencies": [
+        {
+          "subscriberPackageVersionId": "04t4N000000GkN9QAK"
+        },
+        {
+          "subscriberPackageVersionId": "04t0K000001RuKGQA0"
+        },
+        {
+          "subscriberPackageVersionId": "04t8b000001Eh4YAAS"
+        },
+        {
+          "subscriberPackageVersionId": "04t5G000003rUyAQAU"
+        },
+        {
+          "subscriberPackageVersionId": "04t5G000003rUhrQAE"
+        },
+        {
+          "subscriberPackageVersionId": "04t8d000000d0I3AAI"
+        },
+        {
+          "subscriberPackageVersionId": "04t8d000000d04mAAA"
+        },
+        {
+          "subscriberPackageVersionId": "04t8d000000czvsAAA"
+        }
+      ]
+    },
+    {
+      "path": "sro-packages/feedback-app",
+      "package": "Feedback App for SRO",
+      "versionName": "ver 0.1",
+      "versionNumber": "0.1.0.NEXT",
+      "versionDescription": "Help keep the SRO improving with your feedback",
+      "dependencies": [
+        {
+          "subscriberPackageVersionId": "04t8b000001Eh4YAAS"
+        },
+        {
+          "subscriberPackageVersionId": "04t5G000003rUyAQAU"
+        },
+        {
+          "subscriberPackageVersionId": "04t5G000003rUwJQAU"
+        },
+        {
+          "subscriberPackageVersionId": "04t5G0000043wqLQAQ"
+        }
+      ]
+    }
+  ],
+  "name": "standard-revenue-org",
+  "namespace": "",
+  "sfdcLoginUrl": "https://login.salesforce.com",
+  "sourceApiVersion": "56.0",
+  "packageAliases": {
+    "Salesforce CPQ (Winter '22) [234.2]": "04t4N000000GkN9QAK",
+    "Salesforce Billing (Winter '22) [234.1]": "04t0K000001RuKGQA0",
+    "Hybrid Usage Add-On": "0Ho8d000000wk8RCAQ",
+    "Hybrid Usage Add-On@1.0.0-2": "04t8d000000d04mAAA",
+    "Charge Models for Revenue Cloud": "0Ho8d000000wk87CAA",
+    "Charge Models for Revenue Cloud@0.1.0-3": "04t8d000000d0I3AAI",
+    "Product Manager for Revenue Cloud": "0Ho8d000000wk8CCAQ",
+    "Product Manager for Revenue Cloud@0.1.0-3": "04t8d000000d04wAAA",
+    "Legal Entity Manager for Revenue Cloud": "0Ho8d000000wk8lCAA",
+    "Legal Entity Manager for Revenue Cloud@0.1.0-1": "04t8d000000d09JAAQ",
+    "Salesforce CPQ Tools": "0Ho8d000000wk7sCAA",
+    "Salesforce CPQ Tools@0.1.0-2": "04t8d000000d04XAAQ",
+    "Salesforce Advanced Approvals Tools": "0Ho8d000000wk8WCAQ",
+    "Salesforce Advanced Approvals Tools@0.1.0-1": "04t8d000000d056AAA",
+    "Salesforce Billing Tools": "0Ho8d000000wk8HCAQ",
+    "Salesforce Billing Tools@0.1.0-1": "04t8d000000d04rAAA",
+    "RevOps Pack": "0Ho8d000000wk8MCAQ",
+    "RevOps Pack@0.1.0-1": "04t8d000000czvsAAA",
+    "Developer Pack for Revenue Cloud": "0Ho8d000000wk4ACAQ",
+    "Developer Pack for Revenue Cloud@1.0.1-3": "04t8d000000d051AAA",
+    "Flow Quick Action Pack@0.1.0-1": "04t8d000000d00AAAQ",
+    "Convert CSV to Records@0.1.0-1": "04t8d000000czVoAAI",
+    "Flow Actions Base Pack": "04t8b000001Eh4YAAS",
+    "Flow Screen Components Base Pack": "04t5G000003rUyAQAU",
+    "Dynamic Flow Progress": "04t4p0000027q4bAAA",
+    "Collection Actions for Flow": "04t5G000003rUwTQAU",
+    "Navigate Everywhere": "04t5G000003rUhrQAE",
+    "File Upload Improved": "04t5G0000043wqLQAQ",
+    "Send Better Email": "04t5G000003rUwJQAU",
+    "Convert CSV to Records": "04t8d000000czVoAAI",
+    "Hybrid Usage Add-On@1.0.0-3": "04t8d000000d0I8AAI",
+    "Developer Pack for Revenue Cloud@1.0.1-4": "04t8d000000d0PPAAY",
+    "Developer Pack for Revenue Cloud@1.0.1-5": "04t8d000000d0YdAAI",
+    "Feedback App for SRO": "0Ho8d000000wk8qCAA",
+    "Feedback App for SRO@0.1.0-1": "04t8d000000d0YiAAI",
+    "Feedback App for SRO@0.1.0-2": "04t8d000000d0YnAAI"
+  }
+}

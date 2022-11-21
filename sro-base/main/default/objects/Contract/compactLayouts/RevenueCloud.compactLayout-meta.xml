@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RevenueCloud</fullName>
+    <fields>ContractNumber</fields>
+    <fields>StartDate</fields>
+    <fields>EndDate</fields>
+    <fields>StatusContract__c</fields>
+    <fields>SBQQ__RenewalUpliftRate__c</fields>
+    <fields>SBQQ__Quote__c</fields>
+    <fields>SBQQ__Order__c</fields>
+    <label>Revenue Cloud</label>
+</CompactLayout>
