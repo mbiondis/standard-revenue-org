@@ -260,6 +260,7 @@
             <label>Active Inherits Completed</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <formulas>
         <name>FX_Delta_IncludedUsage</name>
         <dataType>Number</dataType>
@@ -356,6 +357,10 @@
         <outputAssignments>
             <assignToReference>QuantityAvailable_ActivePeriod</assignToReference>
             <field>QuantityAllowance__c</field>
+        </outputAssignments>
+        <outputAssignments>
+            <assignToReference>ConsumptionScheduleId</assignToReference>
+            <field>blng__OrderItemConsumptionSchedule__c</field>
         </outputAssignments>
         <outputAssignments>
             <assignToReference>ActivePeriodDate</assignToReference>
@@ -477,7 +482,7 @@
         <name>Update_UsageBucket_IncludedUsage</name>
         <label>Update Usage Bucket Included Usage</label>
         <locationX>217</locationX>
-        <locationY>1888</locationY>
+        <locationY>1891</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -522,6 +527,13 @@
     </variables>
     <variables>
         <name>ActiveUsageSummary_ID</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>ConsumptionScheduleId</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

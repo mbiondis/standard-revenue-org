@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
-    <description>The Total Price keeps memory of the subtotal even after it was billed.</description>
-    <interviewLabel>Hybrid Usage - Update Total Price (Usage Summary) {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Hybrid Usage - Update Total Price (Usage Summary)</label>
+    <environments>Default</environments>
+    <interviewLabel>Hybrid Usage - Initialize Active Period {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Hybrid Usage - Initialize Active Period</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -24,14 +24,14 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
-        <name>Update_TotalPrice</name>
-        <label>Update Total Price</label>
+        <name>SetActivePeriod</name>
+        <label>Set Active Period</label>
         <locationX>176</locationX>
-        <locationY>335</locationY>
+        <locationY>311</locationY>
         <inputAssignments>
-            <field>TotalPrice__c</field>
+            <field>ActivePeriod__c</field>
             <value>
-                <elementReference>$Record.blng__Subtotal__c</elementReference>
+                <booleanValue>true</booleanValue>
             </value>
         </inputAssignments>
         <inputReference>$Record</inputReference>
@@ -40,20 +40,19 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Update_TotalPrice</targetReference>
+            <targetReference>SetActivePeriod</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>blng__TotalQuantity__c</field>
-            <operator>IsChanged</operator>
+            <field>Index__c</field>
+            <operator>EqualTo</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <numberValue>1.0</numberValue>
             </value>
         </filters>
         <object>blng__UsageSummary__c</object>
-        <recordTriggerType>Update</recordTriggerType>
-        <triggerType>RecordAfterSave</triggerType>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
     </start>
     <status>Active</status>
-    <triggerOrder>500</triggerOrder>
 </Flow>

@@ -34,22 +34,6 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Add_Rate_to_Update_Queue</name>
-        <label>Add Rate to Update Queue</label>
-        <locationX>1437</locationX>
-        <locationY>4038</locationY>
-        <assignmentItems>
-            <assignToReference>UpdatedConsumptionRates</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_Consumption_Rates</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Consumption_Rates</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>Add_to_UpdatedQueue</name>
         <label>Add to Updated Queue</label>
         <locationX>1258</locationX>
@@ -63,22 +47,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Loop_through_UsageWindow</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Add_to_UpdateQueue_Remaining</name>
-        <label>Add to Update Queue</label>
-        <locationX>1372</locationX>
-        <locationY>5674</locationY>
-        <assignmentItems>
-            <assignToReference>US_Remaining_Updated</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>RemainingPeriods</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>RemainingPeriods</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -111,30 +79,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Set_QuantityAvailable_for_NextPeriod</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <description>This step is not needed if calculated within a formula in the Consumption Rate object</description>
-        <name>Calculate_Delta</name>
-        <label>Calculate Delta</label>
-        <locationX>1758</locationX>
-        <locationY>3642</locationY>
-        <assignmentItems>
-            <assignToReference>LowerBound_Current</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Consumption_Rates.SBQQ__LowerBound__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>UpperBound_Next</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Consumption_Rates.SBQQ__UpperBound__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Update_Both_Bounds</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -239,22 +183,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Calculate_IndexWindowStart</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Copy_QuantityCarryover</name>
-        <label>Copy Quantity (Carryover)</label>
-        <locationX>1373</locationX>
-        <locationY>5527</locationY>
-        <assignmentItems>
-            <assignToReference>RemainingPeriods.QuantityCarryover__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>US_Next.QuantityCarryover__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Add_to_UpdateQueue_Remaining</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -482,8 +410,8 @@
     <assignments>
         <name>Set_CurrentPeriod_CreditStatus_to_Complete</name>
         <label>Set Current Period Credit Status to Complete</label>
-        <locationX>1306</locationX>
-        <locationY>4217</locationY>
+        <locationX>1314</locationX>
+        <locationY>3518</locationY>
         <assignmentItems>
             <assignToReference>US_Current.UsageCreditRunProcessingStatus__c</assignToReference>
             <operator>Assign</operator>
@@ -492,7 +420,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_Consumption_Rates</targetReference>
+            <targetReference>Update_UsagePeriods_RollingWindow</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -531,14 +459,14 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Get_ConsumptionRates</targetReference>
+            <targetReference>Set_CurrentPeriod_CreditStatus_to_Complete</targetReference>
         </connector>
     </assignments>
     <assignments>
         <name>Set_UsageAccumulationRunProcessingStatus</name>
         <label>Set Usage Accumulation Run Processing Status</label>
-        <locationX>1306</locationX>
-        <locationY>5084</locationY>
+        <locationX>1314</locationX>
+        <locationY>4235</locationY>
         <assignmentItems>
             <assignToReference>US_Next.UsageAccumulationRunProcessingStatus__c</assignToReference>
             <operator>Assign</operator>
@@ -553,8 +481,8 @@
     <assignments>
         <name>Set_UsageCreditRunProcessingStatus</name>
         <label>Set Usage Credit Run Processing Status</label>
-        <locationX>1067</locationX>
-        <locationY>5084</locationY>
+        <locationX>1075</locationX>
+        <locationY>4235</locationY>
         <assignmentItems>
             <assignToReference>US_Next.UsageCreditRunProcessingStatus__c</assignToReference>
             <operator>Assign</operator>
@@ -564,52 +492,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Update_UsagePeriod_Next</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Store_Previous_Upper_Bound</name>
-        <label>Store Previous Upper Bound</label>
-        <locationX>1641</locationX>
-        <locationY>4038</locationY>
-        <assignmentItems>
-            <assignToReference>UpperBound_Current</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Consumption_Rates.SBQQ__UpperBound__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Add_Rate_to_Update_Queue</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Update_Both_Bounds</name>
-        <label>Update Both Bounds</label>
-        <locationX>1758</locationX>
-        <locationY>3826</locationY>
-        <assignmentItems>
-            <assignToReference>Loop_Consumption_Rates.SBQQ__LowerBound__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>UpperBound_Current</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Loop_Consumption_Rates.SBQQ__UpperBound__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_Consumption_Rates.SBQQ__LowerBound__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Loop_Consumption_Rates.SBQQ__UpperBound__c</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>FX_Usage_Delta</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Store_Previous_Upper_Bound</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -640,45 +522,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Add_to_UpdatedQueue</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Update_Lower_Bound</name>
-        <label>Update Lower Bound</label>
-        <locationX>1641</locationX>
-        <locationY>3826</locationY>
-        <assignmentItems>
-            <assignToReference>Loop_Consumption_Rates.SBQQ__LowerBound__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>UpperBound_Current</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Store_Previous_Upper_Bound</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Update_Upper_Bound</name>
-        <label>Update Upper Bound</label>
-        <locationX>1526</locationX>
-        <locationY>3825</locationY>
-        <assignmentItems>
-            <assignToReference>Loop_Consumption_Rates.SBQQ__UpperBound__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>QuantityAvailable_Next</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>Loop_Consumption_Rates.SBQQ__UpperBound__c</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <numberValue>1.0</numberValue>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Store_Previous_Upper_Bound</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -813,8 +656,8 @@
     <decisions>
         <name>Is_NextPeriod_PendingAccumulation</name>
         <label>Is Next Period Pending Accumulation?</label>
-        <locationX>1299</locationX>
-        <locationY>4833</locationY>
+        <locationX>1307</locationX>
+        <locationY>3984</locationY>
         <defaultConnector>
             <targetReference>Is_NextPeriod_PendingCreditUpdate</targetReference>
         </defaultConnector>
@@ -838,8 +681,8 @@
     <decisions>
         <name>Is_NextPeriod_PendingCreditUpdate</name>
         <label>Is Next Period Pending Credit Update?</label>
-        <locationX>1188</locationX>
-        <locationY>4975</locationY>
+        <locationX>1196</locationX>
+        <locationY>4126</locationY>
         <defaultConnector>
             <targetReference>Update_UsagePeriod_Next</targetReference>
         </defaultConnector>
@@ -858,46 +701,6 @@
                 <targetReference>Set_UsageCreditRunProcessingStatus</targetReference>
             </connector>
             <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Rate_Index_Selector</name>
-        <label>Rate Index Selector</label>
-        <locationX>1517</locationX>
-        <locationY>3649</locationY>
-        <defaultConnector>
-            <targetReference>Calculate_Delta</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>All Others</defaultConnectorLabel>
-        <rules>
-            <name>IncludedRate</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_Consumption_Rates.SBQQ__LowerBound__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <numberValue>0.0</numberValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Upper_Bound</targetReference>
-            </connector>
-            <label>Included Rate</label>
-        </rules>
-        <rules>
-            <name>OverageRate</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_Consumption_Rates.SBQQ__UpperBound__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Update_Lower_Bound</targetReference>
-            </connector>
-            <label>Overage Rate</label>
         </rules>
     </decisions>
     <decisions>
@@ -952,6 +755,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <formulas>
         <name>FX_Carryover_WithCarryoverLimit</name>
         <dataType>Number</dataType>
@@ -990,12 +794,6 @@
         <scale>2</scale>
     </formulas>
     <formulas>
-        <name>FX_Usage_Delta</name>
-        <dataType>Number</dataType>
-        <expression>{!UpperBound_Next} - {!LowerBound_Current}</expression>
-        <scale>0</scale>
-    </formulas>
-    <formulas>
         <name>FX_WindowStartDelta</name>
         <dataType>Number</dataType>
         <expression>MOD( {!US_Current.Index__c} - 1, {!UsageTerm} )</expression>
@@ -1003,20 +801,6 @@
     </formulas>
     <interviewLabel>Hybrid Usage - Update Credits {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Hybrid Usage - Update Credits</label>
-    <loops>
-        <name>Loop_Consumption_Rates</name>
-        <label>Loop Consumption Rates</label>
-        <locationX>1314</locationX>
-        <locationY>3716</locationY>
-        <collectionReference>Get_ConsumptionRates</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Rate_Index_Selector</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Set_CurrentPeriod_CreditStatus_to_Complete</targetReference>
-        </noMoreValuesConnector>
-    </loops>
     <loops>
         <name>Loop_through_UsageWindow</name>
         <label>Loop through Usage Window</label>
@@ -1029,20 +813,6 @@
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>CreditCarryoverType_0</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
-        <name>RemainingPeriods</name>
-        <label>Remaining Periods</label>
-        <locationX>1196</locationX>
-        <locationY>5601</locationY>
-        <collectionReference>US_Remaining</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Copy_QuantityCarryover</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Update_RemainingPeriods</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -1064,58 +834,6 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordLookups>
-        <name>Get_ConsumptionRates</name>
-        <label>Get Consumption Rates</label>
-        <locationX>1314</locationX>
-        <locationY>3526</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_Consumption_Rates</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>SBQQ__OrderItemConsumptionSchedule__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.blng__OrderItemConsumptionSchedule__c</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>SBQQ__OrderItemConsumptionRate__c</object>
-        <sortField>SBQQ__LowerBound__c</sortField>
-        <sortOrder>Asc</sortOrder>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_RemainingPeriods</name>
-        <label>Get Remaining Periods</label>
-        <locationX>1196</locationX>
-        <locationY>5435</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>RemainingPeriods</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>blng__OrderProduct__c</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.blng__OrderProduct__c</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Index__c</field>
-            <operator>GreaterThan</operator>
-            <value>
-                <elementReference>US_Next.Index__c</elementReference>
-            </value>
-        </filters>
-        <object>blng__UsageSummary__c</object>
-        <outputReference>US_Remaining</outputReference>
-        <queriedFields>Id</queriedFields>
-        <queriedFields>QuantityCarryover__c</queriedFields>
-    </recordLookups>
     <recordLookups>
         <name>UsagePeriod_Next</name>
         <label>Usage Period (Next)</label>
@@ -1192,27 +910,10 @@
         <sortOrder>Asc</sortOrder>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Consumption_Rates</name>
-        <label>Update Consumption Rates</label>
-        <locationX>1306</locationX>
-        <locationY>4364</locationY>
-        <connector>
-            <targetReference>Update_UsagePeriods_RollingWindow</targetReference>
-        </connector>
-        <inputReference>UpdatedConsumptionRates</inputReference>
-    </recordUpdates>
-    <recordUpdates>
-        <name>Update_RemainingPeriods</name>
-        <label>Update Remaining Periods</label>
-        <locationX>1196</locationX>
-        <locationY>5777</locationY>
-        <inputReference>US_Remaining_Updated</inputReference>
-    </recordUpdates>
-    <recordUpdates>
         <name>Update_UsagePeriod_Current</name>
         <label>Update Current Usage Period</label>
-        <locationX>1307</locationX>
-        <locationY>4667</locationY>
+        <locationX>1315</locationX>
+        <locationY>3818</locationY>
         <connector>
             <targetReference>Is_NextPeriod_PendingAccumulation</targetReference>
         </connector>
@@ -1221,18 +922,15 @@
     <recordUpdates>
         <name>Update_UsagePeriod_Next</name>
         <label>Update Next Usage Period</label>
-        <locationX>1196</locationX>
-        <locationY>5292</locationY>
-        <connector>
-            <targetReference>Get_RemainingPeriods</targetReference>
-        </connector>
+        <locationX>1204</locationX>
+        <locationY>4443</locationY>
         <inputReference>US_Next</inputReference>
     </recordUpdates>
     <recordUpdates>
         <name>Update_UsagePeriods_RollingWindow</name>
         <label>Update Rolling Window Usage Periods</label>
-        <locationX>1306</locationX>
-        <locationY>4517</locationY>
+        <locationX>1314</locationX>
+        <locationY>3668</locationY>
         <connector>
             <targetReference>Update_UsagePeriod_Current</targetReference>
         </connector>
@@ -1330,17 +1028,6 @@
         </value>
     </variables>
     <variables>
-        <name>LowerBound_Current</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-        <value>
-            <numberValue>1.0</numberValue>
-        </value>
-    </variables>
-    <variables>
         <name>QuantityAvailable_Next</name>
         <dataType>Number</dataType>
         <isCollection>false</isCollection>
@@ -1349,44 +1036,6 @@
         <scale>2</scale>
         <value>
             <numberValue>0.0</numberValue>
-        </value>
-    </variables>
-    <variables>
-        <name>QuantityCarryover</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>2</scale>
-        <value>
-            <numberValue>0.0</numberValue>
-        </value>
-    </variables>
-    <variables>
-        <name>UpdatedConsumptionRates</name>
-        <dataType>SObject</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>SBQQ__OrderItemConsumptionRate__c</objectType>
-    </variables>
-    <variables>
-        <name>UpperBound_Current</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>2</scale>
-    </variables>
-    <variables>
-        <name>UpperBound_Next</name>
-        <dataType>Number</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <scale>0</scale>
-        <value>
-            <numberValue>2.0</numberValue>
         </value>
     </variables>
     <variables>
