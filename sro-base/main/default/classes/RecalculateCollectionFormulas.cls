@@ -1,0 +1,38 @@
+global with sharing class RecalculateCollectionFormulas {
+    @InvocableMethod(label='Recalculate Collection Formulas [USF Collection Processor]' category='Util' iconName='resource:CollectionProcessorsSVG:colproc')
+    global static List <Results> recalculateCollectionFormulas(List<Requests> requestList) {
+        
+        List<Results> responseWrapper = new List<Results>();
+        for (Requests curRequest : requestList) {
+            Results response = new Results();
+
+            List<SObject> inputCollection = curRequest.inputCollection;
+    
+            if (inputCollection != null && !inputCollection.isEmpty()) {
+                //response.outputCollection = inputCollection.clone();
+                Formula.recalculateFormulas(inputCollection);
+                //response.outputCollection = inputCollection.deepClone(true, true);
+            }
+    
+            responseWrapper.add(response);
+        }
+      
+
+        return responseWrapper;
+    }
+
+    global class Requests {
+        @InvocableVariable(required=true)
+        global List<SObject> inputCollection;
+    }
+
+    global class Results {
+
+        public Results() {
+            outputCollection = new List<SObject>();
+        }
+
+        @InvocableVariable
+        global List<SObject> outputCollection;
+    }
+}
