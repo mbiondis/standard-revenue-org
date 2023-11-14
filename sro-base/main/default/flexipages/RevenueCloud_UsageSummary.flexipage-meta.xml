@@ -283,6 +283,16 @@
                     <name>uiBehavior</name>
                     <value>none</value>
                 </fieldInstanceProperties>
+                <fieldItem>Record.ActivePeriod__c</fieldItem>
+                <identifier>RecordActivePeriod_cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldInstanceProperties>
+                    <name>uiBehavior</name>
+                    <value>none</value>
+                </fieldInstanceProperties>
                 <fieldItem>Record.RefreshPeriod__c</fieldItem>
                 <identifier>RecordRefreshPeriod_cField</identifier>
             </fieldInstance>
