@@ -4,10 +4,10 @@
     <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>CASE(  ApprovalStatus__c  ,
-    &quot;Draft&quot;, IMAGE(&quot;https://i.ibb.co/vqQsJv5/btn-draft.png&quot;,&quot;Draft&quot;,20,60),
-    &quot;In Review&quot;, IMAGE(&quot;https://i.ibb.co/vqQsJv5/btn-draft.png&quot;,&quot;In Review&quot;,20,60),
+    &quot;Recalled&quot;, IMAGE(&quot;https://i.ibb.co/xLtpt31/btn-recalled.png&quot;,&quot;Recalled&quot;,20,60),
+    &quot;Pending&quot;, IMAGE(&quot;https://i.ibb.co/p33nVvY/btn-pending.png&quot;,&quot;Pending&quot;,20,60),
     &quot;Approved&quot;, IMAGE(&quot;https://i.ibb.co/FYbdpn8/btn-approved.png&quot;, &quot;Approved&quot;,20,60),
-    &quot;Denied&quot;, IMAGE(&quot;https://i.ibb.co/0YgW4t4/btn-denied.png&quot;, &quot;Denied&quot;,20,60),
+    &quot;Rejected&quot;, IMAGE(&quot;https://i.ibb.co/Jmcrh77/btn-rejected.png&quot;, &quot;Rejected&quot;,20,60),
     IMAGE(&quot;https://i.ibb.co/chyFjNg/btn-not-requested.png&quot;,&quot;Not Requested&quot;,20,60)
 )</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
