@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Disable_BillingTriggers</name>
         <label>Disable Billing Triggers</label>
-        <locationX>732</locationX>
-        <locationY>553</locationY>
+        <locationX>733</locationX>
+        <locationY>866</locationY>
         <actionName>SetBillingConfig</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -21,8 +21,8 @@
     <actionCalls>
         <name>Enable_BillingTriggers</name>
         <label>Enable Billing Triggers</label>
-        <locationX>739</locationX>
-        <locationY>2000</locationY>
+        <locationX>740</locationX>
+        <locationY>2313</locationY>
         <actionName>SetBillingConfig</actionName>
         <actionType>apex</actionType>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -53,8 +53,8 @@
     <decisions>
         <name>Action_Invoices_Decision</name>
         <label>Action</label>
-        <locationX>726</locationX>
-        <locationY>1660</locationY>
+        <locationX>727</locationX>
+        <locationY>1973</locationY>
         <defaultConnectorLabel>Ignore</defaultConnectorLabel>
         <rules>
             <name>DeleteInvoices</name>
@@ -90,8 +90,8 @@
     <decisions>
         <name>Found_Records_CreditNote</name>
         <label>Found Records?</label>
-        <locationX>725</locationX>
-        <locationY>1484</locationY>
+        <locationX>726</locationX>
+        <locationY>1797</locationY>
         <defaultConnector>
             <targetReference>Action_Invoices_Decision</targetReference>
         </defaultConnector>
@@ -113,10 +113,35 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Found_Records_InvoiceLine</name>
+        <label>Found Records?</label>
+        <locationX>725</locationX>
+        <locationY>698</locationY>
+        <defaultConnector>
+            <targetReference>Disable_BillingTriggers</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_InvoiceLine</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Queue_InvoiceLines</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>DeleteRelated_InvoiceLine</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Found_Records_Payment</name>
         <label>Found Records?</label>
-        <locationX>724</locationX>
-        <locationY>841</locationY>
+        <locationX>725</locationX>
+        <locationY>1154</locationY>
         <defaultConnector>
             <targetReference>GetPaymentTransactions</targetReference>
         </defaultConnector>
@@ -140,8 +165,8 @@
     <decisions>
         <name>Found_Records_PaymentTransaction</name>
         <label>Found Records?</label>
-        <locationX>724</locationX>
-        <locationY>1177</locationY>
+        <locationX>725</locationX>
+        <locationY>1490</locationY>
         <defaultConnector>
             <targetReference>GetCreditNotes</targetReference>
         </defaultConnector>
@@ -185,6 +210,7 @@
         </rules>
     </decisions>
     <description>Removed the Invoice Status assignment</description>
+    <environments>Default</environments>
     <interviewLabel>Revenue Cloud (DX) - Delete Related - Invoice {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Revenue Cloud (DX) - Delete Related - Invoice</label>
     <loops>
@@ -198,7 +224,7 @@
             <targetReference>Add_Id_to_Collection</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Disable_BillingTriggers</targetReference>
+            <targetReference>GetInvoiceLines</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -223,8 +249,8 @@
     <recordDeletes>
         <name>Delete_CreditNote</name>
         <label>Credit Note</label>
-        <locationX>877</locationX>
-        <locationY>1571</locationY>
+        <locationX>878</locationX>
+        <locationY>1884</locationY>
         <connector>
             <targetReference>Action_Invoices_Decision</targetReference>
         </connector>
@@ -233,8 +259,8 @@
     <recordDeletes>
         <name>Delete_Payment</name>
         <label>Payment</label>
-        <locationX>880</locationX>
-        <locationY>937</locationY>
+        <locationX>881</locationX>
+        <locationY>1250</locationY>
         <connector>
             <targetReference>GetPaymentTransactions</targetReference>
         </connector>
@@ -243,8 +269,8 @@
     <recordDeletes>
         <name>Delete_PaymentTransaction</name>
         <label>Payment Transaction</label>
-        <locationX>877</locationX>
-        <locationY>1265</locationY>
+        <locationX>878</locationX>
+        <locationY>1578</locationY>
         <connector>
             <targetReference>GetCreditNotes</targetReference>
         </connector>
@@ -253,8 +279,8 @@
     <recordDeletes>
         <name>DeleteInvoice</name>
         <label>Delete</label>
-        <locationX>648</locationX>
-        <locationY>1847</locationY>
+        <locationX>649</locationX>
+        <locationY>2160</locationY>
         <connector>
             <targetReference>Enable_BillingTriggers</targetReference>
         </connector>
@@ -263,8 +289,8 @@
     <recordLookups>
         <name>GetCreditNotes</name>
         <label>Get Credit Notes</label>
-        <locationX>733</locationX>
-        <locationY>1355</locationY>
+        <locationX>734</locationX>
+        <locationY>1668</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Records_CreditNote</targetReference>
@@ -282,10 +308,31 @@
         <queriedFields>Id</queriedFields>
     </recordLookups>
     <recordLookups>
+        <name>GetInvoiceLines</name>
+        <label>Get Invoice Lines</label>
+        <locationX>733</locationX>
+        <locationY>560</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Found_Records_InvoiceLine</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>blng__Invoice__c</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>InvoiceIds</elementReference>
+            </value>
+        </filters>
+        <object>blng__InvoiceLine__c</object>
+        <outputReference>Queue_InvoiceLines</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>GetPayments</name>
         <label>Get Payments</label>
-        <locationX>732</locationX>
-        <locationY>703</locationY>
+        <locationX>733</locationX>
+        <locationY>1016</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Records_Payment</targetReference>
@@ -305,8 +352,8 @@
     <recordLookups>
         <name>GetPaymentTransactions</name>
         <label>Get Payment Transactions</label>
-        <locationX>732</locationX>
-        <locationY>1022</locationY>
+        <locationX>733</locationX>
+        <locationY>1335</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Records_PaymentTransaction</targetReference>
@@ -326,8 +373,8 @@
     <recordUpdates>
         <name>Update_Invoices</name>
         <label>Update Invoices</label>
-        <locationX>827</locationX>
-        <locationY>1847</locationY>
+        <locationX>828</locationX>
+        <locationY>2160</locationY>
         <connector>
             <targetReference>Enable_BillingTriggers</targetReference>
         </connector>
@@ -356,6 +403,28 @@
         </connector>
     </start>
     <status>Active</status>
+    <subflows>
+        <name>DeleteRelated_InvoiceLine</name>
+        <label>Delete Related - Invoice Line</label>
+        <locationX>889</locationX>
+        <locationY>798</locationY>
+        <connector>
+            <targetReference>Disable_BillingTriggers</targetReference>
+        </connector>
+        <flowName>RevenueCloud_DX_DeleteRelated_InvoiceLine</flowName>
+        <inputAssignments>
+            <name>Action</name>
+            <value>
+                <stringValue>delete</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>InvoiceLines</name>
+            <value>
+                <elementReference>Queue_InvoiceLines</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
     <variables>
         <name>Action</name>
         <dataType>String</dataType>
@@ -404,6 +473,14 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>blng__Invoice__c</objectType>
+    </variables>
+    <variables>
+        <name>Queue_InvoiceLines</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>blng__InvoiceLine__c</objectType>
     </variables>
     <variables>
         <name>Queue_Invoices_Updated</name>

@@ -3,12 +3,12 @@
     <actionCalls>
         <name>DisableCPQTriggers</name>
         <label>Disable CPQ Triggers</label>
-        <locationX>858</locationX>
-        <locationY>1718</locationY>
+        <locationX>732</locationX>
+        <locationY>545</locationY>
         <actionName>ToggleCPQTriggers</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>Uncontract_Orders</targetReference>
+            <targetReference>IgnoreContract</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -21,12 +21,12 @@
     <actionCalls>
         <name>EnableCPQTriggers</name>
         <label>Enable CPQ Triggers</label>
-        <locationX>858</locationX>
-        <locationY>2136</locationY>
+        <locationX>1686</locationX>
+        <locationY>2113</locationY>
         <actionName>ToggleCPQTriggers</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>ActionOrders_0</targetReference>
+            <targetReference>ActionOrder</targetReference>
         </connector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
         <inputParameters>
@@ -54,13 +54,13 @@
         </connector>
     </assignments>
     <decisions>
-        <name>ActionOrders_0</name>
-        <label>Action</label>
-        <locationX>738</locationX>
-        <locationY>2249</locationY>
+        <name>ActionOrder</name>
+        <label>Action (Order)</label>
+        <locationX>1678</locationX>
+        <locationY>2248</locationY>
         <defaultConnectorLabel>Ignore</defaultConnectorLabel>
         <rules>
-            <name>DeleteOrders_0</name>
+            <name>DeleteOrders</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Action</leftValueReference>
@@ -75,7 +75,7 @@
             <label>Delete</label>
         </rules>
         <rules>
-            <name>ResetOrders_0</name>
+            <name>ResetOrders</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Action</leftValueReference>
@@ -90,10 +90,10 @@
     <decisions>
         <name>DeleteContract_Decision</name>
         <label>Delete?</label>
-        <locationX>876</locationX>
-        <locationY>1346</locationY>
+        <locationX>1586</locationX>
+        <locationY>915</locationY>
         <defaultConnector>
-            <targetReference>IgnoreDecision</targetReference>
+            <targetReference>Uncontract_Orders</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -115,10 +115,10 @@
     <decisions>
         <name>Found_Records_Contract</name>
         <label>Found Records?</label>
-        <locationX>725</locationX>
-        <locationY>1346</locationY>
+        <locationX>1441</locationX>
+        <locationY>914</locationY>
         <defaultConnector>
-            <targetReference>IgnoreDecision</targetReference>
+            <targetReference>Uncontract_Orders</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -140,10 +140,10 @@
     <decisions>
         <name>Found_Records_Invoice</name>
         <label>Found Records?</label>
-        <locationX>725</locationX>
-        <locationY>675</locationY>
+        <locationX>1563</locationX>
+        <locationY>1437</locationY>
         <defaultConnector>
-            <targetReference>GetOrderProducts</targetReference>
+            <targetReference>Deactivate_Orders</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -165,10 +165,10 @@
     <decisions>
         <name>Found_Records_OrderProduct</name>
         <label>Found Records?</label>
-        <locationX>725</locationX>
-        <locationY>1010</locationY>
+        <locationX>1677</locationX>
+        <locationY>1913</locationY>
         <defaultConnector>
-            <targetReference>GetContracts</targetReference>
+            <targetReference>EnableCPQTriggers</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -188,32 +188,99 @@
         </rules>
     </decisions>
     <decisions>
-        <name>IgnoreDecision</name>
-        <label>Ignore?</label>
-        <locationX>737</locationX>
-        <locationY>1603</locationY>
-        <defaultConnectorLabel>Yes</defaultConnectorLabel>
+        <name>IgnoreContract</name>
+        <label>Ignore Contracts?</label>
+        <locationX>1310</locationX>
+        <locationY>782</locationY>
+        <defaultConnector>
+            <targetReference>GetContracts</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
-            <name>No_Ignore</name>
-            <conditionLogic>or</conditionLogic>
+            <name>Yes_IgnoreContract</name>
+            <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Action</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>Action_Contracts</leftValueReference>
+                <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>delete</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>Action</leftValueReference>
-                <operator>EqualTo</operator>
+                <leftValueReference>Action_Contracts</leftValueReference>
+                <operator>NotEqualTo</operator>
                 <rightValue>
                     <stringValue>reset</stringValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>DisableCPQTriggers</targetReference>
+                <targetReference>IgnoreInvoiceBilling</targetReference>
             </connector>
-            <label>No</label>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IgnoreInvoiceBilling</name>
+        <label>Ignore Invoices?</label>
+        <locationX>1440</locationX>
+        <locationY>1310</locationY>
+        <defaultConnector>
+            <targetReference>GetInvoicesBilling</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_IgnoreInvoiceBilling</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Action_InvoicesBilling</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>delete</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Action_InvoicesBilling</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>reset</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>IgnoreOrderProduct</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IgnoreOrderProduct</name>
+        <label>Ignore Order Products?</label>
+        <locationX>1552</locationX>
+        <locationY>1786</locationY>
+        <defaultConnector>
+            <targetReference>GetOrderProducts</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_IgnoreOrderProduct</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Action_OrderProducts</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>delete</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Action_OrderProducts</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>reset</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>EnableCPQTriggers</targetReference>
+            </connector>
+            <label>Yes</label>
         </rules>
     </decisions>
     <decisions>
@@ -253,7 +320,7 @@
             <targetReference>Add_Id_to_Collection</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>GetInvoicesBilling</targetReference>
+            <targetReference>DisableCPQTriggers</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -278,18 +345,18 @@
     <recordDeletes>
         <name>Delete_Contract</name>
         <label>Contract</label>
-        <locationX>889</locationX>
-        <locationY>1527</locationY>
+        <locationX>1605</locationX>
+        <locationY>1131</locationY>
         <connector>
-            <targetReference>IgnoreDecision</targetReference>
+            <targetReference>Uncontract_Orders</targetReference>
         </connector>
         <inputReference>GetContracts</inputReference>
     </recordDeletes>
     <recordDeletes>
         <name>Delete_Orders</name>
         <label>Delete Orders</label>
-        <locationX>746</locationX>
-        <locationY>2421</locationY>
+        <locationX>1834</locationX>
+        <locationY>2247</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -303,8 +370,8 @@
     <recordLookups>
         <name>GetContracts</name>
         <label>Get Contracts</label>
-        <locationX>733</locationX>
-        <locationY>1200</locationY>
+        <locationX>1449</locationX>
+        <locationY>780</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Records_Contract</targetReference>
@@ -324,8 +391,8 @@
     <recordLookups>
         <name>GetInvoicesBilling</name>
         <label>Get Invoice (Billing)</label>
-        <locationX>733</locationX>
-        <locationY>548</locationY>
+        <locationX>1572</locationX>
+        <locationY>1308</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Records_Invoice</targetReference>
@@ -345,8 +412,8 @@
     <recordLookups>
         <name>GetOrderProducts</name>
         <label>Get Order Products</label>
-        <locationX>733</locationX>
-        <locationY>874</locationY>
+        <locationX>1685</locationX>
+        <locationY>1784</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Found_Records_OrderProduct</targetReference>
@@ -366,10 +433,10 @@
     <recordUpdates>
         <name>Deactivate_Orders</name>
         <label>Deactivate Orders</label>
-        <locationX>858</locationX>
-        <locationY>1989</locationY>
+        <locationX>1571</locationX>
+        <locationY>1599</locationY>
         <connector>
-            <targetReference>EnableCPQTriggers</targetReference>
+            <targetReference>IgnoreOrderProduct</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -400,10 +467,10 @@
     <recordUpdates>
         <name>Uncontract_Orders</name>
         <label>Uncontract Orders</label>
-        <locationX>858</locationX>
-        <locationY>1865</locationY>
+        <locationX>1458</locationX>
+        <locationY>1131</locationY>
         <connector>
-            <targetReference>Deactivate_Orders</targetReference>
+            <targetReference>IgnoreInvoiceBilling</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -440,10 +507,10 @@
     <subflows>
         <name>DeleteRelated_Invoice</name>
         <label>Delete Related - Invoice</label>
-        <locationX>893</locationX>
-        <locationY>795</locationY>
+        <locationX>1706</locationX>
+        <locationY>1526</locationY>
         <connector>
-            <targetReference>GetOrderProducts</targetReference>
+            <targetReference>Deactivate_Orders</targetReference>
         </connector>
         <flowName>RevenueCloud_DX_DeleteRelated_Invoice</flowName>
         <inputAssignments>
@@ -462,10 +529,10 @@
     <subflows>
         <name>DeleteRelated_OrderProducts</name>
         <label>Delete Related - Order Products</label>
-        <locationX>883</locationX>
-        <locationY>1109</locationY>
+        <locationX>1814</locationX>
+        <locationY>1914</locationY>
         <connector>
-            <targetReference>GetContracts</targetReference>
+            <targetReference>EnableCPQTriggers</targetReference>
         </connector>
         <flowName>RevenueCloud_DX_DeleteRelated_OrderProduct</flowName>
         <inputAssignments>

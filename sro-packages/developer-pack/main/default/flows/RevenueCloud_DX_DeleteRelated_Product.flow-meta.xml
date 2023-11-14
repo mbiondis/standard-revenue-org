@@ -52,8 +52,8 @@
     <assignments>
         <name>GetOrderId</name>
         <label>Get Order Ids</label>
-        <locationX>1432</locationX>
-        <locationY>2498</locationY>
+        <locationX>1424</locationX>
+        <locationY>2086</locationY>
         <assignmentItems>
             <assignToReference>OrderIds</assignToReference>
             <operator>Add</operator>
@@ -68,8 +68,8 @@
     <assignments>
         <name>GetQuoteIds</name>
         <label>Get Quote Ids</label>
-        <locationX>1411</locationX>
-        <locationY>1991</locationY>
+        <locationX>1404</locationX>
+        <locationY>1580</locationY>
         <assignmentItems>
             <assignToReference>QuoteIds</assignToReference>
             <operator>Add</operator>
@@ -79,22 +79,6 @@
         </assignmentItems>
         <connector>
             <targetReference>Loop_Ids_QuoteLines</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>GetStandardQuoteIds</name>
-        <label>Get Standard Quote Ids</label>
-        <locationX>1405</locationX>
-        <locationY>1575</locationY>
-        <assignmentItems>
-            <assignToReference>StandardQuoteIds</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_Ids_StandardQuoteLines.QuoteId</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_Ids_StandardQuoteLines</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -125,7 +109,7 @@
         <locationX>1096</locationX>
         <locationY>1152</locationY>
         <defaultConnector>
-            <targetReference>GetStandardQuoteLines</targetReference>
+            <targetReference>GetQuoteLines</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -147,8 +131,8 @@
     <decisions>
         <name>FoundRecords_OrderProducts</name>
         <label>Found Records?</label>
-        <locationX>1121</locationX>
-        <locationY>2499</locationY>
+        <locationX>1113</locationX>
+        <locationY>2087</locationY>
         <defaultConnector>
             <targetReference>IgnoreProduct</targetReference>
         </defaultConnector>
@@ -197,8 +181,8 @@
     <decisions>
         <name>FoundRecords_QuoteLines</name>
         <label>Found Records?</label>
-        <locationX>1112</locationX>
-        <locationY>1993</locationY>
+        <locationX>1104</locationX>
+        <locationY>1581</locationY>
         <defaultConnector>
             <targetReference>GetOrderProducts</targetReference>
         </defaultConnector>
@@ -215,31 +199,6 @@
             </conditions>
             <connector>
                 <targetReference>Loop_Ids_QuoteLines</targetReference>
-            </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>FoundRecords_StandardQuoteLines</name>
-        <label>Found Records?</label>
-        <locationX>1104</locationX>
-        <locationY>1576</locationY>
-        <defaultConnector>
-            <targetReference>GetQuoteLines</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes_FoundStandardQuoteLines</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>GetStandardQuoteLines</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Loop_Ids_StandardQuoteLines</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -279,8 +238,8 @@
     <decisions>
         <name>IgnoreCPQQuote</name>
         <label>Ignore?</label>
-        <locationX>1238</locationX>
-        <locationY>2155</locationY>
+        <locationX>1230</locationX>
+        <locationY>1743</locationY>
         <defaultConnector>
             <targetReference>GetQuotes</targetReference>
         </defaultConnector>
@@ -335,7 +294,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>GetStandardQuoteLines</targetReference>
+                <targetReference>GetQuoteLines</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -343,8 +302,8 @@
     <decisions>
         <name>IgnoreOrder</name>
         <label>Ignore?</label>
-        <locationX>1258</locationX>
-        <locationY>2656</locationY>
+        <locationX>1250</locationX>
+        <locationY>2244</locationY>
         <defaultConnector>
             <targetReference>GetOrders</targetReference>
         </defaultConnector>
@@ -375,8 +334,8 @@
     <decisions>
         <name>IgnoreProduct</name>
         <label>Ignore?</label>
-        <locationX>1121</locationX>
-        <locationY>2773</locationY>
+        <locationX>1113</locationX>
+        <locationY>2361</locationY>
         <defaultConnector>
             <targetReference>DeleteProducts</targetReference>
         </defaultConnector>
@@ -391,38 +350,6 @@
                     <stringValue>delete</stringValue>
                 </rightValue>
             </conditions>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>IgnoreStandardQuote</name>
-        <label>Ignore?</label>
-        <locationX>1231</locationX>
-        <locationY>1738</locationY>
-        <defaultConnector>
-            <targetReference>Delete_StandardQuotes</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Yes_IgnoreStandardQuote</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Action_StandardQuote</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>delete</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>Action_StandardQuote</leftValueReference>
-                <operator>NotEqualTo</operator>
-                <rightValue>
-                    <stringValue>reset</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>GetQuoteLines</targetReference>
-            </connector>
             <label>Yes</label>
         </rules>
     </decisions>
@@ -474,8 +401,8 @@
     <loops>
         <name>Loop_Ids_OrderProds</name>
         <label>Loop Ids</label>
-        <locationX>1266</locationX>
-        <locationY>2498</locationY>
+        <locationX>1258</locationX>
+        <locationY>2086</locationY>
         <collectionReference>GetOrderProducts</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -488,8 +415,8 @@
     <loops>
         <name>Loop_Ids_QuoteLines</name>
         <label>Loop Ids</label>
-        <locationX>1248</locationX>
-        <locationY>1992</locationY>
+        <locationX>1240</locationX>
+        <locationY>1580</locationY>
         <collectionReference>GetQuoteLines</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -497,20 +424,6 @@
         </nextValueConnector>
         <noMoreValuesConnector>
             <targetReference>IgnoreCPQQuote</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
-        <name>Loop_Ids_StandardQuoteLines</name>
-        <label>Loop Ids</label>
-        <locationX>1239</locationX>
-        <locationY>1575</locationY>
-        <collectionReference>GetStandardQuoteLines</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>GetStandardQuoteIds</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>IgnoreStandardQuote</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -556,7 +469,7 @@
         <locationX>1328</locationX>
         <locationY>1432</locationY>
         <connector>
-            <targetReference>GetStandardQuoteLines</targetReference>
+            <targetReference>GetQuoteLines</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -569,28 +482,10 @@
         <object>Opportunity</object>
     </recordDeletes>
     <recordDeletes>
-        <name>Delete_StandardQuotes</name>
-        <label>Delete Standard Quotes</label>
-        <locationX>1333</locationX>
-        <locationY>1844</locationY>
-        <connector>
-            <targetReference>GetQuoteLines</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>In</operator>
-            <value>
-                <elementReference>StandardQuoteIds</elementReference>
-            </value>
-        </filters>
-        <object>Quote</object>
-    </recordDeletes>
-    <recordDeletes>
         <name>DeleteProducts</name>
         <label>Delete Products</label>
-        <locationX>1129</locationX>
-        <locationY>2947</locationY>
+        <locationX>1121</locationX>
+        <locationY>2535</locationY>
         <inputReference>Products</inputReference>
     </recordDeletes>
     <recordLookups>
@@ -617,8 +512,8 @@
     <recordLookups>
         <name>GetOrderProducts</name>
         <label>Get Order Products</label>
-        <locationX>1129</locationX>
-        <locationY>2280</locationY>
+        <locationX>1121</locationX>
+        <locationY>1868</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>FoundRecords_OrderProducts</targetReference>
@@ -638,8 +533,8 @@
     <recordLookups>
         <name>GetOrders</name>
         <label>Get Orders</label>
-        <locationX>1389</locationX>
-        <locationY>2778</locationY>
+        <locationX>1381</locationX>
+        <locationY>2366</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Delete_with_Related_Order</targetReference>
@@ -680,8 +575,8 @@
     <recordLookups>
         <name>GetQuoteLines</name>
         <label>Get Quote Lines</label>
-        <locationX>1120</locationX>
-        <locationY>1844</locationY>
+        <locationX>1112</locationX>
+        <locationY>1432</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>FoundRecords_QuoteLines</targetReference>
@@ -701,8 +596,8 @@
     <recordLookups>
         <name>GetQuotes</name>
         <label>Get Quotes</label>
-        <locationX>1386</locationX>
-        <locationY>2280</locationY>
+        <locationX>1378</locationX>
+        <locationY>1868</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>DeleteWithRelated_Quote</targetReference>
@@ -719,27 +614,6 @@
         <object>SBQQ__Quote__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
-    <recordLookups>
-        <name>GetStandardQuoteLines</name>
-        <label>Get Standard Quote Lines</label>
-        <locationX>1112</locationX>
-        <locationY>1432</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>FoundRecords_StandardQuoteLines</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Product2Id</field>
-            <operator>In</operator>
-            <value>
-                <elementReference>ProductIds</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>QuoteLineItem</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <start>
         <locationX>970</locationX>
         <locationY>48</locationY>
@@ -751,8 +625,8 @@
     <subflows>
         <name>Delete_with_Related_Order</name>
         <label>Delete with Related - Order</label>
-        <locationX>1264</locationX>
-        <locationY>2778</locationY>
+        <locationX>1256</locationX>
+        <locationY>2366</locationY>
         <connector>
             <targetReference>IgnoreProduct</targetReference>
         </connector>
@@ -774,8 +648,8 @@
     <subflows>
         <name>DeleteWithRelated_Quote</name>
         <label>Delete with Related (Quote)</label>
-        <locationX>1261</locationX>
-        <locationY>2280</locationY>
+        <locationX>1253</locationX>
+        <locationY>1868</locationY>
         <connector>
             <targetReference>GetOrderProducts</targetReference>
         </connector>
@@ -839,16 +713,6 @@
     </variables>
     <variables>
         <name>Action_Order</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>true</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <elementReference>Action</elementReference>
-        </value>
-    </variables>
-    <variables>
-        <name>Action_StandardQuote</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>true</isInput>

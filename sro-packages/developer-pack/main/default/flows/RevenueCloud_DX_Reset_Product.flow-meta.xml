@@ -530,12 +530,6 @@
             </value>
         </inputAssignments>
         <inputAssignments>
-            <name>Action_StandardQuote</name>
-            <value>
-                <elementReference>Action_Quote</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
             <name>Products</name>
             <value>
                 <elementReference>Products</elementReference>

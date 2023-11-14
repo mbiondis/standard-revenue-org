@@ -29,6 +29,13 @@
                 <stringValue>delete</stringValue>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Action_Approval</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>delete</stringValue>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>DeleteRelated_Quote</targetReference>
         </connector>
@@ -130,6 +137,13 @@
         <locationY>1241</locationY>
         <assignmentItems>
             <assignToReference>Action_Order</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>reset</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Action_Approval</assignToReference>
             <operator>Assign</operator>
             <value>
                 <stringValue>reset</stringValue>
@@ -404,6 +418,12 @@
             </value>
         </inputAssignments>
         <inputAssignments>
+            <name>Action_Approval</name>
+            <value>
+                <elementReference>Action_Approval</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <name>Action_Order</name>
             <value>
                 <elementReference>Action_Order</elementReference>
@@ -423,6 +443,16 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Action_Approval</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>delete</stringValue>
+        </value>
     </variables>
     <variables>
         <name>Action_Order</name>

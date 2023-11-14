@@ -18,44 +18,10 @@
         </connector>
     </assignments>
     <decisions>
-        <name>ActionOrder</name>
-        <label>Action (Order)</label>
-        <locationX>798</locationX>
-        <locationY>1038</locationY>
-        <defaultConnectorLabel>Ignore</defaultConnectorLabel>
-        <rules>
-            <name>DeleteOrders</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Action_Order</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>delete</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>UnOrder_Quotes</targetReference>
-            </connector>
-            <label>Delete</label>
-        </rules>
-        <rules>
-            <name>ResetOrders</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Action_Order</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>reset</stringValue>
-                </rightValue>
-            </conditions>
-            <label>Reset</label>
-        </rules>
-    </decisions>
-    <decisions>
         <name>ActionQuote</name>
         <label>Action (Quote)</label>
-        <locationX>725</locationX>
-        <locationY>854</locationY>
+        <locationX>1190</locationX>
+        <locationY>1247</locationY>
         <defaultConnectorLabel>Ignore</defaultConnectorLabel>
         <rules>
             <name>DeleteQuotes</name>
@@ -82,19 +48,41 @@
                     <stringValue>reset</stringValue>
                 </rightValue>
             </conditions>
-            <connector>
-                <targetReference>ActionOrder</targetReference>
-            </connector>
             <label>Reset</label>
         </rules>
     </decisions>
     <decisions>
-        <name>Found_Records_Order</name>
+        <name>FoundRecords_Approval</name>
         <label>Found Records?</label>
-        <locationX>725</locationX>
-        <locationY>680</locationY>
+        <locationX>964</locationX>
+        <locationY>529</locationY>
         <defaultConnector>
-            <targetReference>ActionQuote</targetReference>
+            <targetReference>Reset_ApprovalStatus</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Approval</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Queue_Approval</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>DeleteRelated_Approval</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>FoundRecords_Order</name>
+        <label>Found Records?</label>
+        <locationX>1199</locationX>
+        <locationY>906</locationY>
+        <defaultConnector>
+            <targetReference>UnOrder_Quotes</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -109,6 +97,70 @@
             </conditions>
             <connector>
                 <targetReference>DeleteRelated_Order</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IgnoreApproval</name>
+        <label>Ignore Approvals?</label>
+        <locationX>725</locationX>
+        <locationY>528</locationY>
+        <defaultConnector>
+            <targetReference>GetApprovals</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_IgnoreApproval</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Action_Approval</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>delete</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Action_Approval</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>reset</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>IgnoreOrder</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IgnoreOrder</name>
+        <label>Ignore Orders?</label>
+        <locationX>964</locationX>
+        <locationY>907</locationY>
+        <defaultConnector>
+            <targetReference>GetOrders</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_IgnoreOrder</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Action_Order</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>delete</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Action_Order</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>reset</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ActionQuote</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -135,6 +187,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
+    <environments>Default</environments>
     <interviewLabel>Revenue Cloud (DX) - Delete Related - Quote {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Revenue Cloud (DX) - Delete Related - Quote</label>
     <loops>
@@ -148,7 +201,7 @@
             <targetReference>Add_Id_to_Collection</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>GetOrders</targetReference>
+            <targetReference>IgnoreApproval</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -173,8 +226,8 @@
     <recordDeletes>
         <name>Delete_Quotes</name>
         <label>Delete Quotes</label>
-        <locationX>657</locationX>
-        <locationY>1037</locationY>
+        <locationX>1343</locationX>
+        <locationY>1247</locationY>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -186,13 +239,34 @@
         <object>SBQQ__Quote__c</object>
     </recordDeletes>
     <recordLookups>
-        <name>GetOrders</name>
-        <label>Get Orders</label>
-        <locationX>733</locationX>
-        <locationY>543</locationY>
+        <name>GetApprovals</name>
+        <label>Get Approvals</label>
+        <locationX>863</locationX>
+        <locationY>527</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Found_Records_Order</targetReference>
+            <targetReference>FoundRecords_Approval</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Quote__c</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>QuoteIds</elementReference>
+            </value>
+        </filters>
+        <object>sbaa__Approval__c</object>
+        <outputReference>Queue_Approval</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>GetOrders</name>
+        <label>Get Orders</label>
+        <locationX>1096</locationX>
+        <locationY>904</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>FoundRecords_Order</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -209,10 +283,58 @@
         <queriedFields>SBQQ__Contracted__c</queriedFields>
     </recordLookups>
     <recordUpdates>
+        <name>Reset_ApprovalStatus</name>
+        <label>Reset Approval Status</label>
+        <locationX>972</locationX>
+        <locationY>698</locationY>
+        <connector>
+            <targetReference>IgnoreOrder</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>QuoteIds</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>ApprovalStatus__c</field>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_ApprovalStatus_to_Pending</name>
+        <label>Set Approval Status to Pending</label>
+        <locationX>1101</locationX>
+        <locationY>696</locationY>
+        <connector>
+            <targetReference>IgnoreOrder</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>In</operator>
+            <value>
+                <elementReference>QuoteIds</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>ApprovalStatus__c</field>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </inputAssignments>
+        <object>SBQQ__Quote__c</object>
+    </recordUpdates>
+    <recordUpdates>
         <name>UnOrder_Quotes</name>
         <label>Un-Order Quotes</label>
-        <locationX>807</locationX>
-        <locationY>1219</locationY>
+        <locationX>1209</locationX>
+        <locationY>1074</locationY>
+        <connector>
+            <targetReference>ActionQuote</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>
@@ -238,12 +360,34 @@
     </start>
     <status>Active</status>
     <subflows>
+        <name>DeleteRelated_Approval</name>
+        <label>Delete Related - Approval</label>
+        <locationX>1101</locationX>
+        <locationY>528</locationY>
+        <connector>
+            <targetReference>Set_ApprovalStatus_to_Pending</targetReference>
+        </connector>
+        <flowName>RevenueCloud_DX_DeleteRelated_Approval</flowName>
+        <inputAssignments>
+            <name>Action</name>
+            <value>
+                <elementReference>Action_Approval</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <name>Approvals</name>
+            <value>
+                <elementReference>Queue_Approval</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <subflows>
         <name>DeleteRelated_Order</name>
         <label>Delete Related - Order</label>
-        <locationX>891</locationX>
-        <locationY>763</locationY>
+        <locationX>1346</locationX>
+        <locationY>993</locationY>
         <connector>
-            <targetReference>ActionQuote</targetReference>
+            <targetReference>UnOrder_Quotes</targetReference>
         </connector>
         <flowName>RevenueCloud_DX_DeleteRelated_Order</flowName>
         <inputAssignments>
@@ -271,6 +415,16 @@
         </value>
     </variables>
     <variables>
+        <name>Action_Approval</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <stringValue>delete</stringValue>
+        </value>
+    </variables>
+    <variables>
         <name>Action_Order</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
@@ -279,6 +433,14 @@
         <value>
             <stringValue>delete</stringValue>
         </value>
+    </variables>
+    <variables>
+        <name>Queue_Approval</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>sbaa__Approval__c</objectType>
     </variables>
     <variables>
         <name>Queue_Order</name>
