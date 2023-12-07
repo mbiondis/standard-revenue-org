@@ -3,23 +3,23 @@ project:
   name: standard-revenue-org
   package:
     name: standard-revenue-org
-    api_version: "56.0"
+    api_version: "58.0"
   git:
   source_format: sfdx
   dependencies:
     #######     UNOFFICIAL SF    #######
 
     # Flow Actions Base Pack
-    - version_id: 04t8b000000mKVTAA2
+    - version_id: 04t8b000001BTgsAAG
 
     # Flow Screen Components Base Pack
-    - version_id: 04t5G0000043wpSQAQ
+    - version_id: 04t5G000004XZhZQAW
 
     # Datatable
-    - version_id: 04t5G0000043wpmQAA
+    #- version_id: 04t5G0000043wpmQAA
 
     # File Upload Improved
-    - version_id: 04t5G0000043wqLQAQ
+    - version_id: 04t5G0000043xu3QAA
 
     # Navigate Everywhere
     - version_id: 04t5G000003rUhrQAE
@@ -28,10 +28,10 @@ project:
     #- version_id: 04t1K0000033MAq
 
     # Collection Actions for Flow
-    - version_id: 04t5G0000043wsMQAQ
+    - version_id: 04t5G000004J7LBQA0
 
     # Send Better Email
-    - version_id: 04t5G000003rUwJQAU
+    - version_id: 04t5G0000043xtKQAQ
 
     # Image Preview URL
     #- version_id: 04t6F000001ZLV6
@@ -45,6 +45,12 @@ project:
     # Record Detail
     #- version_id: 04t5G0000047xDuQAI
 
+    # Flow Magic
+    #- version_id: 04t6F0000045cXBQAY
+
+    # Avvoni Flow Screen Components
+    - version_id: 04t4x0000011k4eAAA
+
     #######     HOMEGROWN      #######
 
     # Flow Quick Actions Pack
@@ -54,61 +60,45 @@ project:
     - version_id: 04t8d000000czVoAAI
 
     # Feedback App for SRO
-    - version_id: 04t8d000000d0YnAAI
+    - version_id: 04t8d000000d3GCAAY
 
     #######     REVENUE CLOUD     #######
 
     # Salesforce CPQ
-    - version_id: 04t4N000000N6EMQA0
+    - version_id: 04t6T000001Z5PmQAK
 
     # Salesforce Advanced Approvals
     - version_id: 04t4W000002kdsnQAA
 
     # Salesforce Billing
-    - version_id: 04t0K000001VLmnQAG
+    - version_id: 04t0K000001VLxMQAW
 
     #######     LABS     #######
 
+    # Finance Logging Connector
+    #- version_id: 04t5Y000001scTaQAI
+
     # Salesforce Billing Reports
-    - version_id: 04t4P000002icr9QAA
+    # DOES NOT work with orgs with New Order Save Behavior enabled
+    #- version_id: 04t4P000002icr9QAA
+
+    # Dunning and Collections
+    #- version_id: 04t3i000002SXYU
 
     # Cancel and Replace
-    - version_id: 04t4W000002GpVaQAK
+    #- version_id: 04t4W000002GpVaQAK
 
     # Dynamic Flow Progress
     - version_id: 04t4p0000027q4bAAA
 
+    # Advanced Approvals for Slack
+    - version_id: 04t5f000000WKDGAA4
+
+    # Data Fetcher
+    #- version_id: 04tDm00000051QgIAI
+
     # Mock Gateway Adapter
     #- version_id: 04t2x000003t1MY
-
-    #######     CUSTOM     #######
-
-    # Charge Models for Revenue Cloud
-    - version_id: 04t8d000000d0I3AAI
-
-    # Hybrid Usage Add-On
-    - version_id: 04t8d000000d0I8AAI
-
-    # Product Manager for Revenue Cloud
-    - version_id: 04t8d000000d04wAAA
-
-    # Legal Entity Manager for Revenue Cloud
-    - version_id: 04t8d000000d09JAAQ
-
-    # Salesforce CPQ Tools
-    - version_id: 04t8d000000d04XAAQ
-
-    # Salesforce Billing Tools
-    - version_id: 04t8d000000d0PKAAY
-
-    # Salesforce Advanced Approval Tools
-    - version_id: 04t8d000000d056AAA
-
-    # RevOps Pack
-    - version_id: 04t8d000000czvsAAA
-
-    # Developer Pack for Revenue Cloud
-    - version_id: 04t8d000000d0YdAAI
 
 tasks:
   robot:
@@ -125,6 +115,45 @@ tasks:
   run_tests:
     options:
       required_org_code_coverage_percent: 75
+
+  update_dependencies_custom:
+    description: Install custom packages
+    class_path: cumulusci.tasks.salesforce.UpdateDependencies
+    group: Custom
+    options:
+      dependencies:
+        # Charge Models for Revenue Cloud
+        - version_id: 04t8d000000d0I3AAI
+
+        # Hybrid Usage Add-On
+        - version_id: 04t8d000000d3GHAAY
+
+        # Product Manager for Revenue Cloud
+        # collides with the Product.Image__c
+        - version_id: 04t8d000000d04wAAA
+
+        # Legal Entity Manager for Revenue Cloud
+        # collides with Account.PriceBook__c
+        - version_id: 04t8d000000d09JAAQ
+
+        # Salesforce CPQ Tools
+        # collides with Account.PriceBook__c, There is already a Child Relationship named Accounts on Price Book
+        # FIX: change name of existing relationship to SDO_Accounts
+        - version_id: 04t8d000000d04XAAQ
+
+        # Salesforce Billing Tools
+        - version_id: 04t8d000000d0PKAAY
+
+        # Salesforce Advanced Approval Tools
+        # (SBQQ__Quote__c.ApprovalStatus__c) Cannot change which global value set this picklist uses
+        # FIX: delete field
+        - version_id: 04t8d000000d056AAA
+
+        # RevOps Pack
+        - version_id: 04t8d000000czvsAAA
+
+        # Developer Pack for Revenue Cloud
+        - version_id: 04t8d000000d6pyAAA
 
 flows:
   assign_permissions:
@@ -150,20 +179,59 @@ flows:
         options:
           command: "sfdmu:run -s csvfile -p data/step-2/csv"
 
-  prod_org:
+  sdo_packages:
     steps:
       1:
-        flow: dependencies
+        task: update_dependencies
+        options:
+          resolution_strategy: production
       2:
+        task: update_dependencies_custom
+      3:
         task: deploy
         options:
           path: sro-base
-      3:
-        flow: config_dev
       4:
-        flow: assign_permissions
+        task: deploy_post
+        options:
+          path: unpackaged/post
       5:
-        flow: load_data
+        task: deploy_post
+        options:
+          path: unpackaged/sdo
+      6:
+        task: update_admin_profile
+      7:
+        flow: assign_permissions
+      #6:
+      #  flow: load_data
+
+  sdo_metadata:
+    steps:
+      1:
+        task: update_dependencies
+        options:
+          resolution_strategy: production
+      2:
+        flow: deploy_packages_as_metadata
+      3:
+        task: deploy
+        options:
+          path: sro-base
+      4:
+        task: deploy_post
+        options:
+          path: unpackaged/post
+      5:
+        task: deploy_post
+        options:
+          path: unpackaged/sdo
+      6:
+        task: update_admin_profile
+      7:
+        flow: assign_permissions
+      #6:
+      #  flow: load_data
 
   deploy_unmanaged:
     steps:
@@ -179,3 +247,72 @@ flows:
         flow: assign_permissions
       6:
         flow: load_data
+
+  package_test:
+    steps:
+      1:
+        task: update_dependencies
+        options:
+          dependencies:
+            - github: https://github.com/SalesforceFoundation/EDA
+
+  burner_org:
+    steps:
+      1:
+        flow: dependencies
+      2:
+        flow: deploy_packages_as_metadata
+      3:
+        flow: deploy_unmanaged
+      4:
+        flow: config_dev
+      5:
+        flow: assign_permissions
+      6:
+        flow: load_data
+
+  deploy_packages_as_metadata:
+    steps:
+      1:
+        task: deploy
+        options:
+          path: sro-packages/charge-models
+      2:
+        task: deploy
+        options:
+          path: sro-packages/hybrid-usage-add-on
+      3:
+        task: deploy
+        options:
+          path: sro-packages/product-manager
+      4:
+        task: deploy
+        options:
+          path: sro-packages/legal-entity-manager
+      5:
+        task: deploy
+        options:
+          path: sro-packages/salesforce-cpq-tools
+      6:
+        task: deploy
+        options:
+          path: sro-packages/salesforce-billing-tools
+      7:
+        task: deploy
+        options:
+          path: sro-packages/salesforce-advanced-approvals-tools
+      8:
+        task: deploy
+        options:
+          path: sro-packages/revops-pack
+      9:
+        task: deploy
+        options:
+          path: sro-packages/developer-pack
+
+orgs:
+  scratch:
+    demo:
+      config_file: orgs/dev.json
+      days: 30
+      namespaced: false
