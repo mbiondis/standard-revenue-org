@@ -1,6 +1,15 @@
 {
   "orgName": "standard-revenue-org - Release Test Org",
   "edition": "Enterprise",
+  "features": [
+    "EnableSetPasswordInApi",
+    "CPQ",
+    "FinanceLogging",
+    "Communities",
+    "PartnerCommunity",
+    "ForceComPlatform",
+    "SalesUser"
+  ],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
@@ -16,5 +25,6 @@
       "sessionSettings": {
         "forceRelogin": false
       }
-    }  }
+    }
+  }
 }

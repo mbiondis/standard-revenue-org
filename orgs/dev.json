@@ -1,6 +1,22 @@
 {
   "orgName": "standard-revenue-org - Dev Org",
   "edition": "Developer",
+  "features": [
+    "EnableSetPasswordInApi",
+    "Communities",
+    "PartnerCommunity",
+    "ForceComPlatform",
+    "SalesUser",
+    "CPQ",
+    "FinanceLogging",
+    "RevSubscriptionManagement",
+    "OrderSaveLogicEnabled",
+    "OmniStudioDesigner",
+    "DocGen",
+    "DocGenDesigner",
+    "DocGenInd",
+    "ContractMgmtInd"
+  ],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
@@ -22,6 +38,33 @@
     },
     "languageSettings": {
       "enableTranslationWorkbench": true
+    },
+    "subscriptionManagementSettings": {
+      "enableSubscriptionManagement": true
+    },
+    "orderSettings": {
+      "enableOrders": true,
+      "enableReductionOrders": true,
+      "enableEnhancedCommerceOrders": true,
+      "enableOrderEvents": true,
+      "enableOptionalPricebook": true,
+      "enableZeroQuantity": true,
+      "enableNegativeQuantity": true
+    },
+    "quoteSettings": {
+      "enableQuote": true
+    },
+    "experienceBundleSettings": {
+      "enableExperienceBundleMetadata": true
+    },
+    "communitiesSettings": {
+      "enableNetworksEnabled": true
+    },
+    "emailAdministrationSettings": {
+      "enableEnhancedEmailEnabled": true
+    },
+    "currencySettings": {
+      "enableMultiCurrency": true
     }
   }
 }
